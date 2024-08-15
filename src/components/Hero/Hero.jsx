@@ -17,7 +17,7 @@ const Hero = () => {
           creativity.
         </p>
         <Button className="text-xl font-medium p-8">
-          Create your logo - it's free
+          Create your logo - it&apos;s free
         </Button>
       </div>
     </main>
