@@ -16,7 +16,7 @@ const Hero = () => {
           Craft a stunning logo in seconds, no costs, no catch - pure
           creativity.
         </p>
-        <Button className="text-xl font-medium p-8">
+        <Button className="text-xl font-medium p-7">
           Create your logo - it&apos;s free
         </Button>
       </div>
