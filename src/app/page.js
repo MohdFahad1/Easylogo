@@ -1,6 +1,6 @@
-import About from "@/components/About/About";
-import Footer from "@/components/Footer/Footer";
-import Hero from "@/components/Hero/Hero";
+import Hero from "@/components/Home/Hero";
+import About from "@/components/Home/About";
+import Footer from "@/components/Home/Footer";
 
 export default function Home() {
   return (

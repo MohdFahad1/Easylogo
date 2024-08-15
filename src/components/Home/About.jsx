@@ -11,7 +11,7 @@ const About = () => {
   return (
     <div className="flex justify-between pl-20 py-20 overflow-hidden">
       <div className="mt-20">
-        <h1 className="w-[400px] text-4xl font-medium mb-10">
+        <h1 className="w-[400px] text-4xl font-medium mb-10 text-[#030712]">
           Craft a Unique Brand Identity, Effortlessly
         </h1>
         {heading.map((text, index) => (
