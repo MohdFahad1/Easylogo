@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -10,9 +11,11 @@ const Footer = () => {
       <p className="text-xl text-gray-500">
         No fees, no limitations, just pure creativity.
       </p>
-      <Button className="text-xl font-medium p-7 bg-[#030712]">
-        Create your logo - it&apos;s free
-      </Button>
+      <Link href="/create">
+        <Button className="text-xl font-medium p-7 bg-[#030712]">
+          Create your logo - it&apos;s free
+        </Button>
+      </Link>
     </footer>
   );
 };
