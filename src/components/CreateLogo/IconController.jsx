@@ -1,13 +1,15 @@
 import { Smile, Swords } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Slider } from "../ui/slider";
 import ColorPickerController from "./ColorPickerController";
+import { UpdateStorageContext } from "@/context/UpdateStorageContext";
 
 const IconController = () => {
   const [size, setSize] = useState(210);
   const [rotate, setRotate] = useState(0);
   const [color, setColor] = useState("#fff");
   const [storageValue, setStorageValue] = useState(null);
+  const { updateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -27,6 +29,7 @@ const IconController = () => {
         iconColor: color,
         icon: "Swords",
       };
+      setUpdateStorage(updatedValue);
       localStorage.setItem("value", JSON.stringify(updatedValue));
     }
   }, [size, rotate, color, storageValue]);
