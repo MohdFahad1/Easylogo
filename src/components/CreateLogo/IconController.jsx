@@ -1,5 +1,5 @@
 import { Smile, Swords } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Slider } from "../ui/slider";
 import ColorPickerController from "./ColorPickerController";
 
@@ -7,6 +7,20 @@ const IconController = () => {
   const [size, setSize] = useState(210);
   const [rotate, setRotate] = useState(0);
   const [color, setColor] = useState("#fff");
+
+  const storageValue = JSON.parse(localStorage.getItem("value"));
+
+  useEffect(() => {
+    const updatedValue = {
+      ...storageValue,
+      iconSize: size,
+      iconRotate: rotate,
+      iconColor: color,
+      icon: "Swords",
+    };
+
+    localStorage.setItem("value", JSON.stringify(updatedValue));
+  }, [size, rotate, color]);
 
   return (
     <div className="p-5 h-screen overflow-auto">
