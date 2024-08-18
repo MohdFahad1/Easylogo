@@ -6,19 +6,28 @@ const BackgroundController = () => {
   const [rounded, setRounded] = useState(0);
   const [padding, setPadding] = useState(50);
   const [color, setColor] = useState("#000");
-
-  const storageValue = JSON.parse(localStorage.getItem("value"));
+  const [storageValue, setStorageValue] = useState(null);
 
   useEffect(() => {
-    const updatedValue = {
-      ...storageValue,
-      bgRounded: rounded,
-      bgPadding: padding,
-      bgColor: color,
-    };
+    if (typeof window !== "undefined") {
+      const storedValue = localStorage.getItem("value");
+      if (storedValue) {
+        setStorageValue(JSON.parse(storedValue));
+      }
+    }
+  }, []);
 
-    localStorage.setItem("value", JSON.stringify(updatedValue));
-  }, [rounded, padding, color]);
+  useEffect(() => {
+    if (storageValue !== null) {
+      const updatedValue = {
+        ...storageValue,
+        bgRounded: rounded,
+        bgPadding: padding,
+        bgColor: color,
+      };
+      localStorage.setItem("value", JSON.stringify(updatedValue));
+    }
+  }, [rounded, padding, color, storageValue]);
 
   return (
     <div className="p-5 h-screen overflow-auto">
@@ -37,7 +46,7 @@ const BackgroundController = () => {
         </div>
         <div className="my-3">
           <label className="py-2 flex justify-between items-center">
-            Rotate <span>{padding} px</span>
+            Padding <span>{padding} px</span>
           </label>
           <Slider
             value={[padding]}

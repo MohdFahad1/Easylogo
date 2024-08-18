@@ -7,20 +7,29 @@ const IconController = () => {
   const [size, setSize] = useState(210);
   const [rotate, setRotate] = useState(0);
   const [color, setColor] = useState("#fff");
-
-  const storageValue = JSON.parse(localStorage.getItem("value"));
+  const [storageValue, setStorageValue] = useState(null);
 
   useEffect(() => {
-    const updatedValue = {
-      ...storageValue,
-      iconSize: size,
-      iconRotate: rotate,
-      iconColor: color,
-      icon: "Swords",
-    };
+    if (typeof window !== "undefined") {
+      const storedValue = localStorage.getItem("value");
+      if (storedValue) {
+        setStorageValue(JSON.parse(storedValue));
+      }
+    }
+  }, []);
 
-    localStorage.setItem("value", JSON.stringify(updatedValue));
-  }, [size, rotate, color]);
+  useEffect(() => {
+    if (storageValue !== null) {
+      const updatedValue = {
+        ...storageValue,
+        iconSize: size,
+        iconRotate: rotate,
+        iconColor: color,
+        icon: "Swords",
+      };
+      localStorage.setItem("value", JSON.stringify(updatedValue));
+    }
+  }, [size, rotate, color, storageValue]);
 
   return (
     <div className="p-5 h-screen overflow-auto">
