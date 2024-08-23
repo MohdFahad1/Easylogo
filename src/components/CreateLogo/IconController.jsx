@@ -5,11 +5,12 @@ import ColorPickerController from "./ColorPickerController";
 import { UpdateStorageContext } from "@/context/UpdateStorageContext";
 
 const IconController = () => {
+  const { updateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
+
   const [size, setSize] = useState(210);
   const [rotate, setRotate] = useState(0);
   const [color, setColor] = useState("#fff");
   const [storageValue, setStorageValue] = useState(null);
-  const { updateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
