@@ -4,18 +4,27 @@ import ColorPickerController from "./ColorPickerController";
 import { UpdateStorageContext } from "@/context/UpdateStorageContext";
 
 const BackgroundController = () => {
-  const [rounded, setRounded] = useState(0);
-  const [padding, setPadding] = useState(50);
-  const [color, setColor] = useState("#000");
-  const [storageValue, setStorageValue] = useState(null);
   const { updateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
+  const [storageValue, setStorageValue] = useState(null);
+
+  const [rounded, setRounded] = useState(
+    storageValue ? storageValue?.bgRounded : 0
+  );
+  const [padding, setPadding] = useState(
+    storageValue ? storageValue?.bgPadding : 50
+  );
+  const [color, setColor] = useState(
+    storageValue ? storageValue?.bgColor : "#000"
+  );
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedValue = localStorage.getItem("value");
-      if (storedValue) {
-        setStorageValue(JSON.parse(storedValue));
-      }
+    const storedValue = localStorage.getItem("value");
+    if (storedValue) {
+      const parsedValue = JSON.parse(storedValue);
+      setStorageValue(parsedValue);
+      setRounded(parsedValue?.bgRounded || 0);
+      setPadding(parsedValue?.bgPadding || 50);
+      setColor(parsedValue?.bgColor || "#000");
     }
   }, []);
 
@@ -40,7 +49,7 @@ const BackgroundController = () => {
             Rounded <span>{rounded} px</span>
           </label>
           <Slider
-            value={[rounded]}
+            defaultValue={[rounded]}
             max={512}
             step={1}
             className="my-2"
@@ -52,7 +61,7 @@ const BackgroundController = () => {
             Padding <span>{padding} px</span>
           </label>
           <Slider
-            value={[padding]}
+            defaultValue={[padding]}
             max={100}
             step={1}
             className="my-2"
