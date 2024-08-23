@@ -7,20 +7,25 @@ import { UpdateStorageContext } from "@/context/UpdateStorageContext";
 const IconController = () => {
   const { updateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
 
-  const [size, setSize] = useState(210);
-  const [rotate, setRotate] = useState(0);
-  const [color, setColor] = useState("#fff");
   const [storageValue, setStorageValue] = useState(null);
 
+  const [size, setSize] = useState(280);
+  const [rotate, setRotate] = useState(0);
+  const [color, setColor] = useState("#fff");
+
+  // Fetch the storage value when the component mounts
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedValue = localStorage.getItem("value");
-      if (storedValue) {
-        setStorageValue(JSON.parse(storedValue));
-      }
+    const storedValue = localStorage.getItem("value");
+    if (storedValue) {
+      const parsedValue = JSON.parse(storedValue);
+      setStorageValue(parsedValue);
+      setSize(parsedValue?.iconSize || 280);
+      setRotate(parsedValue?.iconRotate || 0);
+      setColor(parsedValue?.iconColor || "#fff");
     }
   }, []);
 
+  // Update localStorage and context when size, rotate, or color changes
   useEffect(() => {
     if (storageValue !== null) {
       const updatedValue = {
@@ -40,14 +45,21 @@ const IconController = () => {
       <div>
         <label>Icon</label>
         <div className="p-3 cursor-pointer bg-gray-200 rounded-md w-[50px] h-[50px] my-2 flex items-center justify-center">
-          <Swords />
+          <Swords
+            color={color}
+            style={{
+              transform: `rotate(${rotate}deg)`,
+              width: `${size}px`,
+              height: `${size}px`,
+            }}
+          />
         </div>
         <div className="my-3">
           <label className="py-2 flex justify-between items-center">
             Size <span>{size} px</span>
           </label>
           <Slider
-            value={[size]}
+            defaultValue={[size]}
             max={512}
             step={1}
             className="my-2"
@@ -59,7 +71,7 @@ const IconController = () => {
             Rotate <span>{rotate} &deg;</span>
           </label>
           <Slider
-            value={[rotate]}
+            defaultValue={[rotate]}
             max={360}
             step={1}
             className="my-2"
