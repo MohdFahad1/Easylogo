@@ -1,59 +1,37 @@
-import { Smile, Swords } from "lucide-react";
-import React, { useContext, useEffect, useState } from "react";
+// IconController.jsx
+import React, { useEffect, useState } from "react";
 import { Slider } from "../ui/slider";
 import ColorPickerController from "./ColorPickerController";
-import { UpdateStorageContext } from "@/context/UpdateStorageContext";
+import { useUpdateStorage } from "@/context/UpdateStorageContext";
+import IconList from "./IconList";
 
 const IconController = () => {
-  const { updateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
+  const { storageValue, setStorageValue } = useUpdateStorage();
+  const [size, setSize] = useState(storageValue.iconSize);
+  const [rotate, setRotate] = useState(storageValue.iconRotate);
+  const [color, setColor] = useState(storageValue.iconColor);
+  const [icon, setIcon] = useState(storageValue.icon);
 
-  const [storageValue, setStorageValue] = useState(null);
-
-  const [size, setSize] = useState(280);
-  const [rotate, setRotate] = useState(0);
-  const [color, setColor] = useState("#fff");
-
-  // Fetch the storage value when the component mounts
   useEffect(() => {
-    const storedValue = localStorage.getItem("value");
-    if (storedValue) {
-      const parsedValue = JSON.parse(storedValue);
-      setStorageValue(parsedValue);
-      setSize(parsedValue?.iconSize || 280);
-      setRotate(parsedValue?.iconRotate || 0);
-      setColor(parsedValue?.iconColor || "#fff");
-    }
-  }, []);
+    setSize(storageValue.iconSize);
+    setRotate(storageValue.iconRotate);
+    setColor(storageValue.iconColor);
+  }, [storageValue]);
 
-  // Update localStorage and context when size, rotate, or color changes
   useEffect(() => {
-    if (storageValue !== null) {
-      const updatedValue = {
-        ...storageValue,
-        iconSize: size,
-        iconRotate: rotate,
-        iconColor: color,
-        icon: "Swords",
-      };
-      setUpdateStorage(updatedValue);
-      localStorage.setItem("value", JSON.stringify(updatedValue));
-    }
-  }, [size, rotate, color, storageValue]);
+    setStorageValue((prev) => ({
+      ...prev,
+      iconSize: size,
+      iconRotate: rotate,
+      iconColor: color,
+      icon: icon,
+    }));
+  }, [size, rotate, color, icon, setStorageValue]);
 
   return (
     <div className="p-5 h-screen overflow-auto">
       <div>
-        <label>Icon</label>
-        <div className="p-3 cursor-pointer bg-gray-200 rounded-md w-[50px] h-[50px] my-2 flex items-center justify-center">
-          <Swords
-            color={color}
-            style={{
-              transform: `rotate(${rotate}deg)`,
-              width: `${size}px`,
-              height: `${size}px`,
-            }}
-          />
-        </div>
+        <IconList selectedIcon={(icon) => setIcon(icon)} />
         <div className="my-3">
           <label className="py-2 flex justify-between items-center">
             Size <span>{size} px</span>

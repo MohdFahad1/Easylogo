@@ -1,22 +1,22 @@
 "use client";
+import React, { useState } from "react";
 import BackgroundController from "@/components/CreateLogo/BackgroundController";
 import Header from "@/components/CreateLogo/Header";
 import IconController from "@/components/CreateLogo/IconController";
 import LogoPreview from "@/components/CreateLogo/LogoPreview";
 import SideNav from "@/components/CreateLogo/SideNav";
-import { UpdateStorageContext } from "@/context/UpdateStorageContext";
-import React, { useState } from "react";
+import { UpdateStorageProvider } from "@/context/UpdateStorageContext";
 
-const page = () => {
+const Page = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [updateStorage, setUpdateStorage] = useState({});
+
   return (
-    <UpdateStorageContext.Provider value={{ updateStorage, setUpdateStorage }}>
+    <UpdateStorageProvider>
       <div className="max-h-screen overflow-hidden">
         <Header />
         <div className="flex">
           <div className="w-64">
-            <SideNav selectedIndex={(value) => setSelectedIndex(value)} />
+            <SideNav selectedIndex={setSelectedIndex} />
           </div>
           <div className="flex w-full">
             <div className="w-[450px]">
@@ -32,8 +32,8 @@ const page = () => {
           </div>
         </div>
       </div>
-    </UpdateStorageContext.Provider>
+    </UpdateStorageProvider>
   );
 };
 
-export default page;
+export default Page;

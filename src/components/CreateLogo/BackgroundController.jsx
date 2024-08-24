@@ -1,45 +1,28 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Slider } from "../ui/slider";
 import ColorPickerController from "./ColorPickerController";
-import { UpdateStorageContext } from "@/context/UpdateStorageContext";
+import { useUpdateStorage } from "@/context/UpdateStorageContext";
 
 const BackgroundController = () => {
-  const { updateStorage, setUpdateStorage } = useContext(UpdateStorageContext);
-  const [storageValue, setStorageValue] = useState(null);
-
-  const [rounded, setRounded] = useState(
-    storageValue ? storageValue?.bgRounded : 0
-  );
-  const [padding, setPadding] = useState(
-    storageValue ? storageValue?.bgPadding : 50
-  );
-  const [color, setColor] = useState(
-    storageValue ? storageValue?.bgColor : "#000"
-  );
+  const { storageValue, setStorageValue } = useUpdateStorage();
+  const [rounded, setRounded] = useState(storageValue.bgRounded);
+  const [padding, setPadding] = useState(storageValue.bgPadding);
+  const [color, setColor] = useState(storageValue.bgColor);
 
   useEffect(() => {
-    const storedValue = localStorage.getItem("value");
-    if (storedValue) {
-      const parsedValue = JSON.parse(storedValue);
-      setStorageValue(parsedValue);
-      setRounded(parsedValue?.bgRounded || 0);
-      setPadding(parsedValue?.bgPadding || 50);
-      setColor(parsedValue?.bgColor || "#000");
-    }
-  }, []);
+    setRounded(storageValue.bgRounded);
+    setPadding(storageValue.bgPadding);
+    setColor(storageValue.bgColor);
+  }, [storageValue]);
 
   useEffect(() => {
-    if (storageValue !== null) {
-      const updatedValue = {
-        ...storageValue,
-        bgRounded: rounded,
-        bgPadding: padding,
-        bgColor: color,
-      };
-      setUpdateStorage(updatedValue);
-      localStorage.setItem("value", JSON.stringify(updatedValue));
-    }
-  }, [rounded, padding, color, storageValue]);
+    setStorageValue((prev) => ({
+      ...prev,
+      bgRounded: rounded,
+      bgPadding: padding,
+      bgColor: color,
+    }));
+  }, [rounded, padding, color, setStorageValue]);
 
   return (
     <div className="p-5 h-screen overflow-auto">
