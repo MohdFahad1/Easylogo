@@ -9,21 +9,21 @@ const About = () => {
   ];
 
   return (
-    <div className="flex justify-between pl-20 py-20 overflow-hidden">
-      <div className="mt-20">
-        <h1 className="w-[400px] text-4xl font-medium mb-10 text-[#030712]">
+    <div className="flex md:flex-row flex-col md:justify-between justify-center md:items-start items-center md:gap-0 gap-5 md:pl-20 pl-0 md:py-20 py-10 overflow-hidden">
+      <div className="md:mt-20 mt-0 flex flex-col items-center justify-center">
+        <h1 className="md:w-[400px] w-auto md:text-4xl text-3xl font-medium mb-10 md:ml-0 ml-8 text-[#030712]">
           Craft a Unique Brand Identity, Effortlessly
         </h1>
         {heading.map((text, index) => (
           <p
             key={index}
-            className="p-5 mt-5 rounded-2xl text-xl w-[450px] border-[1px] bg-gray-100"
+            className="p-5 mt-5 rounded-2xl text-xl md:w-[450px] w-[333px] border-[1px] bg-gray-100"
           >
             {text}
           </p>
         ))}
       </div>
-      <div className="border-[12px] bg-gray-200 rounded-2xl -mr-44">
+      <div className="border-[12px] bg-gray-200 rounded-2xl md:-mr-32 -mr-0">
         <Image
           src="/bg.png"
           alt="bg"

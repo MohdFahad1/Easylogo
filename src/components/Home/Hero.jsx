@@ -5,15 +5,15 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <main className="p-10 flex flex-col justify-center items-center">
+    <main className="md:p-10 p-5 flex flex-col justify-center items-center">
       <div>
         <Logo />
       </div>
       <div className="flex flex-col justify-center items-center text-center gap-8 mt-20">
-        <h1 className="text-7xl font-semibold w-[800px] text-[#030712]">
+        <h1 className="md:text-7xl text-4xl font-semibold md:w-[800px] w-auto text-[#030712]">
           Get Your Stunning Logo Instantly, For Free!
         </h1>
-        <p className="text-xl text-gray-500 w-[500px]">
+        <p className="text-xl text-gray-500 md:w-[500px] w-auto">
           Craft a stunning logo in seconds, no costs, no catch - pure
           creativity.
         </p>
