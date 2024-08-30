@@ -29,7 +29,7 @@ const IconList = ({ selectedIcon }) => {
       >
         <Icon name={icon} />
       </div>
-      <Dialog open={openDialog}>
+      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Pick your Favourite Icon</DialogTitle>

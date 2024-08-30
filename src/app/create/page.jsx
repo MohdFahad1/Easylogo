@@ -9,11 +9,12 @@ import { UpdateStorageProvider } from "@/context/UpdateStorageContext";
 
 const Page = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [downloadIcon, setDownloadIcon] = useState();
 
   return (
     <UpdateStorageProvider>
       <div className="max-h-screen overflow-hidden">
-        <Header />
+        <Header DownloadIcon={setDownloadIcon} />
         <div className="flex">
           <div className="w-64">
             <SideNav selectedIndex={setSelectedIndex} />
@@ -27,7 +28,7 @@ const Page = () => {
               )}
             </div>
             <div className="w-full flex justify-center items-center h-5/6">
-              <LogoPreview />
+              <LogoPreview downloadIcon={downloadIcon} />
             </div>
           </div>
         </div>
