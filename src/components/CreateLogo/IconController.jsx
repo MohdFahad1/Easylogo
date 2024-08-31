@@ -29,7 +29,7 @@ const IconController = () => {
   }, [size, rotate, color, icon, setStorageValue]);
 
   return (
-    <div className="p-5 h-screen overflow-auto">
+    <div className="p-5 md:h-screen h-auto overflow-auto">
       <div>
         <IconList selectedIcon={(icon) => setIcon(icon)} />
         <div className="my-3">

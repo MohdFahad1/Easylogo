@@ -14,13 +14,19 @@ const Page = () => {
   return (
     <UpdateStorageProvider>
       <div className="max-h-screen overflow-hidden">
-        <Header DownloadIcon={setDownloadIcon} />
+        <Header
+          DownloadIcon={setDownloadIcon}
+          setSelectedIndex={setSelectedIndex}
+        />
         <div className="flex">
-          <div className="w-64">
-            <SideNav selectedIndex={setSelectedIndex} />
+          <div className="w-64 md:block hidden">
+            <SideNav
+              selectedIndex={selectedIndex}
+              setSelectedIndex={setSelectedIndex}
+            />
           </div>
-          <div className="flex w-full">
-            <div className="w-[450px]">
+          <div className="flex w-full flex-col-reverse md:flex-row overflow-auto h-screen md:h-auto">
+            <div className="md:w-[450px] w-auto">
               {selectedIndex === 0 ? (
                 <IconController />
               ) : (

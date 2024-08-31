@@ -39,9 +39,9 @@ const LogoPreview = ({ downloadIcon }) => {
   };
 
   return (
-    <div className="w-full flex items-center justify-center">
+    <div className="w-full flex items-center justify-center md:mt-0 mt-10">
       <div
-        className="rounded-md flex items-center justify-center bg-gray-200 outline-dotted outline-gray-300 h-[500px] w-[500px]"
+        className="rounded-md flex items-center justify-center bg-gray-200 outline-dotted outline-gray-300 md:h-[500px] md:w-[500px] h-[300px] w-[300px]"
         style={{ padding: storageValue.bgPadding }}
       >
         <div

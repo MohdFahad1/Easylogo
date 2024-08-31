@@ -25,7 +25,7 @@ const BackgroundController = () => {
   }, [rounded, padding, color, setStorageValue]);
 
   return (
-    <div className="p-5 h-screen overflow-auto">
+    <div className="p-5 md:h-screen h-auto overflow-auto">
       <div>
         <div className="my-3">
           <label className="py-2 flex justify-between items-center">
@@ -33,7 +33,7 @@ const BackgroundController = () => {
           </label>
           <Slider
             defaultValue={[rounded]}
-            max={220}
+            max={140}
             step={1}
             className="my-2"
             onValueChange={(value) => setRounded(value[0])}
