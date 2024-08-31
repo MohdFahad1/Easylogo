@@ -25,7 +25,10 @@ const Page = () => {
               setSelectedIndex={setSelectedIndex}
             />
           </div>
-          <div className="flex w-full flex-col-reverse md:flex-row overflow-auto h-screen md:h-auto">
+          <div className="flex w-full flex-col md:flex-row overflow-auto h-screen md:h-auto">
+            <div className="w-full md:hidden justify-center items-center h-5/6 flex">
+              <LogoPreview downloadIcon={downloadIcon} />
+            </div>
             <div className="md:w-[450px] w-auto">
               {selectedIndex === 0 ? (
                 <IconController />
@@ -33,7 +36,7 @@ const Page = () => {
                 <BackgroundController />
               )}
             </div>
-            <div className="w-full flex justify-center items-center h-5/6">
+            <div className="w-full md:flex justify-center items-center h-5/6 hidden">
               <LogoPreview downloadIcon={downloadIcon} />
             </div>
           </div>
