@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../common/Logo";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -14,13 +14,15 @@ import {
 import SideNav from "./SideNav";
 
 const Header = ({ DownloadIcon, setSelectedIndex }) => {
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
   return (
     <header className="p-5 border-2 flex justify-between items-center">
       <Link href="/" className="md:block hidden">
         <Logo />
       </Link>
       <div className="md:hidden block">
-        <Sheet>
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger>
             <Menu size={28} />
           </SheetTrigger>
@@ -28,7 +30,12 @@ const Header = ({ DownloadIcon, setSelectedIndex }) => {
             <SheetHeader>
               <SheetTitle className="text-left">Select your Tab</SheetTitle>
               <SheetDescription>
-                <SideNav setSelectedIndex={setSelectedIndex} />
+                <SideNav
+                  setSelectedIndex={(index) => {
+                    setSelectedIndex(index);
+                    setIsSheetOpen(false);
+                  }}
+                />
               </SheetDescription>
             </SheetHeader>
           </SheetContent>
