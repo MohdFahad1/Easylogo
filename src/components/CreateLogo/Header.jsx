@@ -26,7 +26,7 @@ const Header = ({ DownloadIcon, setSelectedIndex }) => {
           <SheetTrigger>
             <Menu size={28} />
           </SheetTrigger>
-          <SheetContent>
+          <SheetContent side="left">
             <SheetHeader>
               <SheetTitle className="text-left">Select your Tab</SheetTitle>
               <SheetDescription>
