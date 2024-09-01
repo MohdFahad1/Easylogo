@@ -3,17 +3,21 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { icons, Swords } from "lucide-react";
 import { iconList } from "@/constants/icons";
 import { useUpdateStorage } from "@/context/UpdateStorageContext";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 const IconList = ({ selectedIcon }) => {
   const { storageValue, setStorageValue } = useUpdateStorage();
   const [openDialog, setOpenDialog] = useState(false);
   const [icon, setIcon] = useState(storageValue?.icon);
+  const [dialogView, setDialogView] = useState("create-account");
 
   const Icon = ({ name, color, size }) => {
     const LucidIcon = icons[name];
@@ -53,6 +57,82 @@ const IconList = ({ selectedIcon }) => {
           </DialogHeader>
         </DialogContent>
       </Dialog>
+
+      {/* <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+        <DialogContent className="p-10">
+          <DialogHeader>
+            {dialogView === "create-account" ? (
+              <>
+                <DialogTitle className="text-2xl mb-3">
+                  You need to be logged to choose a shape.
+                </DialogTitle>
+                <DialogDescription className="text-lg">
+                  Enter your email to create an account and get access to your
+                  new logo.
+                </DialogDescription>
+              </>
+            ) : (
+              <>
+                <DialogTitle className="text-2xl mb-3">
+                  You need to be logged to choose a shape.
+                </DialogTitle>
+                <DialogDescription className="text-lg">
+                  Enter your email to create an account and get access to your
+                  new logo.
+                </DialogDescription>
+              </>
+            )}
+          </DialogHeader>
+          <div>
+            {dialogView === "create-account" ? (
+              <>
+                <Input placeholder="you@example.com" className="py-6 text-lg" />
+                <Button type="submit" className="w-full text-lg py-6 mt-5">
+                  Create account
+                </Button>
+              </>
+            ) : (
+              <>
+                <Input placeholder="you@example.com" className="py-6 text-lg" />
+                <Button type="submit" className="w-full text-lg py-6 mt-5">
+                  Sign In
+                </Button>
+              </>
+            )}
+          </div>
+          <DialogFooter>
+            <p className="text-center w-full">
+              {dialogView === "create-account" ? (
+                <>
+                  Already have an account?{" "}
+                  <span
+                    className="hover:underline cursor-pointer"
+                    onClick={() => setDialogView("sign-in")}
+                  >
+                    Sign In
+                  </span>
+                </>
+              ) : (
+                <>
+                  Don&apos;t have an account?{" "}
+                  <span
+                    className="hover:underline cursor-pointer"
+                    onClick={() => setDialogView("create-account")}
+                  >
+                    Create Account
+                  </span>
+                  <DialogDescription>
+                    <p className="mt-5 text-lg">
+                      By signing up, you agree to the Terms of Service and
+                      Privacy Policy
+                    </p>
+                  </DialogDescription>
+                </>
+              )}
+            </p>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog> */}
     </div>
   );
 };

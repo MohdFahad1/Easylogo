@@ -1,4 +1,3 @@
-// IconController.jsx
 import React, { useEffect, useState } from "react";
 import { Slider } from "../ui/slider";
 import ColorPickerController from "./ColorPickerController";
