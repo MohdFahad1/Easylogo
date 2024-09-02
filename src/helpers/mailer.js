@@ -6,9 +6,11 @@ export const sendEmail = async ({ email, userId }) => {
   try {
     const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
-    await User.findByIdAndUpdate(userId, {
-      verifyToken: hashedToken,
-      verifyTokenExpiry: Date.now() + 3600000,
+    const updatedUser = await User.findByIdAndUpdate(userId, {
+      $set: {
+        verifyToken: hashedToken,
+        verifyTokenExpiry: new Date(Date.now() + 3600000),
+      },
     });
 
     var transporter = nodemailer.createTransport({
