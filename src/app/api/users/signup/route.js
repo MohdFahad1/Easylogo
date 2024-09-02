@@ -42,7 +42,6 @@ export async function POST(req) {
       savedUser,
     });
   } catch (error) {
-    // Log detailed error information
     console.error("Error during user registration:", error);
 
     return NextResponse.json(
