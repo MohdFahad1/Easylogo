@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
   verifyToken: String,
-  verigyTokenExpiry: Date,
+  verifyTokenExpiry: Date,
 });
 
 const User = mongoose.models.users || mongoose.model("users", userSchema);
