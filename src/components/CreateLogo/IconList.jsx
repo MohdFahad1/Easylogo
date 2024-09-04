@@ -9,15 +9,27 @@ import {
 import { icons } from "lucide-react";
 import { iconList } from "@/constants/icons";
 import { useUpdateStorage } from "@/context/UpdateStorageContext";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const IconList = ({ selectedIcon }) => {
   const { storageValue } = useUpdateStorage();
   const [openDialog, setOpenDialog] = useState(false);
   const [icon, setIcon] = useState(storageValue?.icon);
+  const { isSignedIn } = useUser();
+  const router = useRouter();
 
   const Icon = ({ name, color, size }) => {
     const LucidIcon = icons[name];
     return LucidIcon ? <LucidIcon color={color} size={size} /> : null;
+  };
+
+  const handleIconClick = () => {
+    if (isSignedIn) {
+      setOpenDialog(true);
+    } else {
+      router.push("/sign-up");
+    }
   };
 
   return (
@@ -25,7 +37,7 @@ const IconList = ({ selectedIcon }) => {
       <label>Icon</label>
       <div
         className="p-3 cursor-pointer bg-gray-200 rounded-md w-[50px] h-[50px] my-2 flex items-center justify-center"
-        onClick={() => setOpenDialog(true)}
+        onClick={handleIconClick}
       >
         <Icon name={icon} />
       </div>
