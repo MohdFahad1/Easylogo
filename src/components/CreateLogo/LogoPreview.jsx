@@ -1,16 +1,10 @@
-// LogoPreview.jsx
 import React, { useEffect } from "react";
 import { icons } from "lucide-react";
 import { useUpdateStorage } from "@/context/UpdateStorageContext";
 import html2canvas from "html2canvas";
+
 const LogoPreview = ({ downloadIcon }) => {
   const { storageValue } = useUpdateStorage();
-
-  useEffect(() => {
-    if (downloadIcon) {
-      downloadLogo();
-    }
-  }, [downloadIcon]);
 
   const downloadLogo = () => {
     const downloadLogoDiv = document.getElementById("downloadLogoDiv");
@@ -20,12 +14,18 @@ const LogoPreview = ({ downloadIcon }) => {
       const pngImage = canvas.toDataURL("image/png");
       const downloadLink = document.createElement("a");
       downloadLink.href = pngImage;
-      downloadLink.download = "easy_logo.png";
+      downloadLink.download = `easy_logo_${Date.now()}.png`;
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
     });
   };
+
+  useEffect(() => {
+    if (downloadIcon) {
+      downloadLogo();
+    }
+  }, [downloadIcon]);
 
   const Icon = ({ name, color, size, rotate }) => {
     const LucidIcon = icons[name];

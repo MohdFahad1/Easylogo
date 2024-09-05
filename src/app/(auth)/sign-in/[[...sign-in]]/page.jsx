@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { SignIn } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -8,8 +10,8 @@ export default function Page() {
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img
             alt=""
-            src="https://images.unsplash.com/photo-1617195737496-bc30194e3a19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            className="absolute inset-0 h-full w-full object-cover opacity-80"
+            src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+            className="absolute inset-0 h-full w-full object-cover"
           />
 
           <div className="hidden lg:relative lg:block lg:p-12">
@@ -22,13 +24,17 @@ export default function Page() {
               />
             </div>
 
-            <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
+            <h2 className="mt-6 text-2xl font-bold sm:text-3xl md:text-4xl  text-black">
               Welcome to EasyLogo
             </h2>
 
-            <p className="mt-4 leading-relaxed text-white/90">
+            <p className="mt-4 leading-relaxed text-black">
               Generate professional logos quickly and easily with EasyLogo.
             </p>
+
+            <Button className="mt-5 bg-[#030712]">
+              <Link href="/create">Go Back</Link>
+            </Button>
           </div>
         </section>
 
@@ -51,6 +57,10 @@ export default function Page() {
               <p className="mt-4 leading-relaxed text-gray-500">
                 Generate professional logos quickly and easily with EasyLogo.
               </p>
+
+              <Button className="mt-5 bg-[#030712]">
+                <Link href="/create">Go Back</Link>
+              </Button>
             </div>
 
             <SignIn />

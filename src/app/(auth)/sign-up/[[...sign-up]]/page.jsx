@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { SignUp } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -29,6 +31,10 @@ export default function Page() {
             <p className="mt-4 leading-relaxed text-white/90">
               Generate professional logos quickly and easily with EasyLogo.
             </p>
+
+            <Button className="mt-5 bg-[#030712]">
+              <Link href="/create">Go Back</Link>
+            </Button>
           </div>
         </section>
 
@@ -51,6 +57,10 @@ export default function Page() {
               <p className="mt-4 leading-relaxed text-gray-500">
                 Generate professional logos quickly and easily with EasyLogo.
               </p>
+
+              <Button className="mt-5 bg-[#030712]">
+                <Link href="/create">Go Back</Link>
+              </Button>
             </div>
 
             <SignUp />
