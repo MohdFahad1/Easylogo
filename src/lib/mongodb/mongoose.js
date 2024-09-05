@@ -13,7 +13,7 @@ export const connect = async () => {
     await mongoose.connect(process.env.MONGODB_URI, {
       dbName: "easy-logo",
       useNewUrlParser: true,
-      useUnifiedTopology: Trykker,
+      useUnifiedTopology: true,
     });
 
     console.log("MongoDB connected");
