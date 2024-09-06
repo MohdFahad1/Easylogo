@@ -74,7 +74,7 @@ export async function POST(req) {
     }
   }
 
-  if (eventType === "user.updated") {
+  if (eventType === "user.deleted") {
     const { id } = evt?.data;
     try {
       await deleteUser(id);
