@@ -1,25 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { icons } from "lucide-react";
 import { useUpdateStorage } from "@/context/UpdateStorageContext";
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 
 const LogoPreview = ({ downloadIcon }) => {
   const { storageValue } = useUpdateStorage();
+  const ref = useRef(null);
 
-  const downloadLogo = () => {
-    const downloadLogoDiv = document.getElementById("downloadLogoDiv");
-    html2canvas(downloadLogoDiv, {
-      backgroundColor: null,
-    }).then((canvas) => {
-      const pngImage = canvas.toDataURL("image/png");
-      const downloadLink = document.createElement("a");
-      downloadLink.href = pngImage;
-      downloadLink.download = `easy_logo_${Date.now()}.png`;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    });
-  };
+  const downloadLogo = useCallback(() => {
+    if (ref.current === null) {
+      return;
+    }
+
+    toPng(ref.current, { cacheBust: true })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = `easy-logo-${Date.now()}.png`;
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [ref]);
 
   useEffect(() => {
     if (downloadIcon) {
@@ -39,14 +42,14 @@ const LogoPreview = ({ downloadIcon }) => {
   };
 
   return (
-    <div className="w-full flex items-center justify-center md:mt-0 mt-10">
+    <div className="flex items-center justify-center w-full mt-10 md:mt-0">
       <div
         className="rounded-md flex items-center justify-center bg-gray-200 outline-dotted outline-gray-300 md:h-[500px] md:w-[500px] h-[300px] w-[300px]"
         style={{ padding: storageValue.bgPadding }}
       >
         <div
-          id="downloadLogoDiv"
-          className="h-full w-full flex items-center justify-center"
+          ref={ref}
+          className="flex items-center justify-center w-full h-full"
           style={{
             borderRadius: storageValue.bgRounded,
             background: storageValue.bgColor,

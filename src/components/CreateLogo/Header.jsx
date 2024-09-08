@@ -16,25 +16,29 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const Header = ({ downloadIcon, setSelectedIndex }) => {
+const Header = ({ DownloadIcon, setSelectedIndex }) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const { isSignedIn } = useUser();
   const router = useRouter();
 
+  const handleDownloadIcon = () => {
+    DownloadIcon(Date.now());
+  };
+
   const handleIconClick = () => {
     if (isSignedIn) {
-      downloadIcon(Date.now());
+      handleDownloadIcon();
     } else {
       router.push("/sign-up");
     }
   };
 
   return (
-    <header className="p-5 border-2 flex justify-between items-center">
-      <Link href="/" className="md:block hidden">
+    <header className="flex items-center justify-between p-5 border-2">
+      <Link href="/" className="hidden md:block">
         <Logo />
       </Link>
-      <div className="md:hidden block">
+      <div className="block md:hidden">
         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger>
             <Menu size={28} />

@@ -15,18 +15,18 @@ const Page = () => {
     <UpdateStorageProvider>
       <div className="max-h-screen overflow-hidden">
         <Header
-          downloadIcon={setDownloadIcon}
+          DownloadIcon={setDownloadIcon}
           setSelectedIndex={setSelectedIndex}
         />
         <div className="flex">
-          <div className="w-64 md:block hidden">
+          <div className="hidden w-64 md:block">
             <SideNav
               selectedIndex={selectedIndex}
               setSelectedIndex={setSelectedIndex}
             />
           </div>
-          <div className="flex w-full flex-col md:flex-row overflow-auto h-screen md:h-auto">
-            <div className="w-full md:hidden justify-center items-center h-5/6 flex">
+          <div className="flex flex-col w-full h-screen overflow-auto md:flex-row md:h-auto">
+            <div className="flex items-center justify-center w-full md:hidden h-5/6">
               <LogoPreview downloadIcon={downloadIcon} />
             </div>
             <div className="md:w-[450px] w-auto">
@@ -36,7 +36,7 @@ const Page = () => {
                 <BackgroundController />
               )}
             </div>
-            <div className="w-full md:flex justify-center items-center h-5/6 hidden">
+            <div className="items-center justify-center hidden w-full md:flex h-5/6">
               <LogoPreview downloadIcon={downloadIcon} />
             </div>
           </div>
