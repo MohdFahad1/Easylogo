@@ -25,10 +25,10 @@ const BackgroundController = () => {
   }, [rounded, padding, color, setStorageValue]);
 
   return (
-    <div className="p-5 md:h-screen h-auto overflow-auto">
+    <div className="h-auto p-5 overflow-auto md:h-screen">
       <div>
         <div className="my-3">
-          <label className="py-2 flex justify-between items-center">
+          <label className="flex items-center justify-between py-2">
             Rounded <span>{rounded} px</span>
           </label>
           <Slider
@@ -40,12 +40,12 @@ const BackgroundController = () => {
           />
         </div>
         <div className="my-3">
-          <label className="py-2 flex justify-between items-center">
+          <label className="flex items-center justify-between py-2">
             Padding <span>{padding} px</span>
           </label>
           <Slider
             defaultValue={[padding]}
-            max={80}
+            max={100}
             step={1}
             className="my-2"
             onValueChange={(value) => setPadding(value[0])}

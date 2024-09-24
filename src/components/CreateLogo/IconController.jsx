@@ -3,6 +3,7 @@ import { Slider } from "../ui/slider";
 import ColorPickerController from "./ColorPickerController";
 import { useUpdateStorage } from "@/context/UpdateStorageContext";
 import IconList from "./IconList";
+import Image from "next/image";
 
 const IconController = () => {
   const { storageValue, setStorageValue } = useUpdateStorage();
@@ -28,11 +29,11 @@ const IconController = () => {
   }, [size, rotate, color, icon, setStorageValue]);
 
   return (
-    <div className="p-5 md:h-screen h-auto overflow-auto">
+    <div className="h-auto p-5 overflow-auto md:h-screen">
       <div>
         <IconList selectedIcon={(icon) => setIcon(icon)} />
         <div className="my-3">
-          <label className="py-2 flex justify-between items-center">
+          <label className="flex items-center justify-between py-2">
             Size <span>{size} px</span>
           </label>
           <Slider
@@ -44,7 +45,7 @@ const IconController = () => {
           />
         </div>
         <div className="my-3">
-          <label className="py-2 flex justify-between items-center">
+          <label className="flex items-center justify-between py-2">
             Rotate <span>{rotate} &deg;</span>
           </label>
           <Slider

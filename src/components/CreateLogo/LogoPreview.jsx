@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef } from "react";
+import Image from "next/image";
 import { icons } from "lucide-react";
 import { useUpdateStorage } from "@/context/UpdateStorageContext";
 import { toPng } from "html-to-image";
@@ -55,12 +56,31 @@ const LogoPreview = ({ downloadIcon }) => {
             background: storageValue.bgColor,
           }}
         >
-          <Icon
-            name={storageValue.icon}
-            color={storageValue.iconColor}
-            size={storageValue.iconSize}
-            rotate={storageValue.iconRotate}
-          />
+          {storageValue.icon.startsWith("shape-") ? (
+            // For premium icons
+            <div
+              style={{
+                width: `${storageValue.iconSize}px`,
+                height: `${storageValue.iconSize}px`,
+                transform: `rotate(${storageValue.iconRotate}deg)`,
+              }}
+            >
+              <Image
+                src={`/logos/${storageValue.icon}`}
+                alt={storageValue.icon}
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+          ) : (
+            // For lucide-react icons
+            <Icon
+              name={storageValue.icon}
+              color={storageValue.iconColor}
+              size={storageValue.iconSize}
+              rotate={storageValue.iconRotate}
+            />
+          )}
         </div>
       </div>
     </div>
