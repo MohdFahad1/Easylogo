@@ -54,11 +54,11 @@ const IconList = ({ selectedIcon }) => {
       </div>
 
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent>
-          <DialogHeader>
+        <DialogContent className="w-[350px] md:w-[450px]">
+          <DialogHeader className="w-[235px] md:w-[400px]">
             <DialogTitle>Pick your Favourite Icon</DialogTitle>
 
-            <Tabs defaultValue="free-icons" className="w-[400px]">
+            <Tabs defaultValue="free-icons" className="w-[235px] md:w-[400px]">
               <TabsList>
                 <TabsTrigger value="free-icons">Free Icons</TabsTrigger>
                 <TabsTrigger value="premium-icons">Premium Icons</TabsTrigger>
@@ -66,18 +66,18 @@ const IconList = ({ selectedIcon }) => {
 
               <TabsContent value="free-icons">
                 <DialogDescription>
-                  <div className="max-h-[400px] overflow-auto grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 mt-5">
+                  <div className="max-h-[400px] w-[300px] md:w-auto overflow-auto grid grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2 mt-5">
                     {iconList.map((icon, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-center w-10 p-2 border-2 rounded-md cursor-pointer hover:bg-gray-200"
+                        className="flex items-center justify-center w-20 h-20 p-2 border-2 rounded-md cursor-pointer hover:bg-gray-200"
                         onClick={() => {
                           selectedIcon(icon);
                           setOpenDialog(false);
                           setIcon(icon);
                         }}
                       >
-                        <Icon name={icon} size={20} color={"#000"} />
+                        <Icon name={icon} size={45} color={"#000"} />
                       </div>
                     ))}
                   </div>
@@ -86,11 +86,11 @@ const IconList = ({ selectedIcon }) => {
 
               <TabsContent value="premium-icons">
                 <DialogDescription>
-                  <div className="max-h-[400px] overflow-auto grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 mt-5">
+                  <div className="max-h-[400px] w-[300px] md:w-auto overflow-auto grid grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2 mt-5">
                     {premiumIconList.map((icon, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-center w-10 p-2 bg-black border-2 rounded-md cursor-pointer hover:opacity-85"
+                        className="flex items-center justify-center w-20 h-20 p-2 bg-black border-2 rounded-md cursor-pointer hover:opacity-60"
                         onClick={() => {
                           selectedIcon(icon);
                           setOpenDialog(false);
@@ -100,9 +100,9 @@ const IconList = ({ selectedIcon }) => {
                         <Image
                           src={`/logos/${icon}`}
                           alt={icon}
-                          className="w-5 h-5"
-                          width={25}
-                          height={25}
+                          className="w-12 h-12"
+                          width={10}
+                          height={10}
                         />
                       </div>
                     ))}
