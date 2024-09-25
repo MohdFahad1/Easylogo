@@ -12,7 +12,7 @@ import { iconList } from "@/constants/icons";
 import { useUpdateStorage } from "@/context/UpdateStorageContext";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import Image from "next/image"; // Ensure Image is imported
+import Image from "next/image";
 
 const premiumIconList = Array.from(
   { length: 123 },
