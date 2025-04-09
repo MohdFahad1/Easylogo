@@ -8,8 +8,16 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "EasyLogo | Create Professional Logos",
-  description: "Generate professional logos quickly and easily with EasyLogo.",
+  title: "EasyLogo | Create Professional, Free Logos Online",
+  description:
+    "Design and generate stunning, professional logos quickly and easily for free with EasyLogo. Ideal for startups, small businesses, and personal branding.",
+  keywords: [
+    "free logo maker",
+    "online logo creator",
+    "free logo design tool",
+    "EasyLogo",
+    "professional logos",
+  ].join(", "),
 };
 
 export default function RootLayout({ children }) {
